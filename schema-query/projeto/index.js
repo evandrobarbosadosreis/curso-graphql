@@ -39,7 +39,7 @@ const resolvers = {
     Produto: {
         precoComDesconto(produto) {
             if (produto.desconto > 0) {
-                return produto.preco - produto.desconto
+                return produto.preco * (100 - produto.desconto) / 100;
             }
             return produto.preco
         }
@@ -69,7 +69,7 @@ const resolvers = {
         produtoEmDestaque() {
             return {
                 nome: 'Meu produto de exemplo',
-                preco: 150,
+                preco: 100,
                 desconto: 25
             }
         }
