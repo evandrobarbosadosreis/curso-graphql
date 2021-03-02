@@ -24,7 +24,8 @@ const typeDefs = gql`
         olaMundo: String
         horaAtual: Date
         usuarioLogado: Usuario,
-        produtoEmDestaque: Produto
+        produtoEmDestaque: Produto,
+        buscarSorteioMega: [Int]
     }
 
 `
@@ -72,6 +73,10 @@ const resolvers = {
                 preco: 100,
                 desconto: 25
             }
+        },
+
+        buscarSorteioMega() {
+            return [10, 51 , 63, 34, 14]
         }
 
     }
