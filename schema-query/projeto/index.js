@@ -13,21 +13,36 @@ const typeDefs = gql`
         ativo: Boolean
     }
 
+    type Produto {
+        nome: String!
+        preco: Float!
+        desconto: Float
+        precoComDesconto: Float
+    }
+
     type Query {
         olaMundo: String
         horaAtual: Date
-        usuarioLogado: Usuario
+        usuarioLogado: Usuario,
+        produtoEmDestaque: Produto
     }
 
 `
 const resolvers = {
     
     Usuario: {
-
         salario(usuario) {
             return usuario.salario_real
         }
+    },
 
+    Produto: {
+        precoComDesconto(produto) {
+            if (produto.desconto > 0) {
+                return produto.preco - produto.desconto
+            }
+            return produto.preco
+        }
     },
 
     Query: {
@@ -48,6 +63,14 @@ const resolvers = {
                 idade: 25,
                 salario_real: 1500.25,
                 ativo: true
+            }
+        },
+
+        produtoEmDestaque() {
+            return {
+                nome: 'Meu produto de exemplo',
+                preco: 150,
+                desconto: 25
             }
         }
 
