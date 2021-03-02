@@ -26,6 +26,7 @@ const typeDefs = gql`
         usuarioLogado: Usuario,
         produtoEmDestaque: Produto,
         buscarSorteioMega: [Int]
+        todosOsUsuarios: [Usuario]
     }
 
 `
@@ -77,6 +78,35 @@ const resolvers = {
 
         buscarSorteioMega() {
             return [10, 51 , 63, 34, 14]
+        },
+
+        todosOsUsuarios() {
+            return [
+                {
+                    id: 1,
+                    nome: 'Ana da Web',
+                    email: 'anaweb@email.com',
+                    idade: 25,
+                    salario_real: 1500.25,
+                    ativo: true
+                },
+                {
+                    id: 2,
+                    nome: 'Juca da Web',
+                    email: 'jucaweb@email.com',
+                    idade: 45,
+                    salario_real: 1200.55,
+                    ativo: false
+                },
+                {
+                    id: 2,
+                    nome: 'Lúcia da Web',
+                    email: 'luciaweb@email.com',
+                    idade: 40,
+                    salario_real: 5200.00,
+                    ativo: true
+                }
+            ]
         }
 
     }
