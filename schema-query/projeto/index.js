@@ -15,6 +15,11 @@ const typeDefs = gql`
         ativo: Boolean
     }
 
+    type Perfil {
+        id: Int
+        nome: String
+    }
+
     type Produto {
         nome: String!
         preco: Float!
@@ -29,10 +34,12 @@ const typeDefs = gql`
         produtoEmDestaque: Produto,
         buscarSorteioMega: [Int]
         usuarios: [Usuario],
-        usuario(id: Int): Usuario
+        usuario(id: Int): Usuario,
+        perfis: [Perfil],
+        perfil(id: Int): Perfil
     }
 `
-// Lista de usuários usados nos exemplos
+// Lista de usuários e perfis usados nos exemplos
 
 const listaUsuarios = [
     {
@@ -58,6 +65,17 @@ const listaUsuarios = [
         idade: 40,
         salario_real: 5200.00,
         ativo: true
+    }
+]
+
+const listaPerfis = [
+    {
+        id: 1,
+        nome: 'Comum'
+    },
+    {
+        id: 2,
+        nome: 'Adminsitrador'
     }
 ]
 
@@ -113,8 +131,16 @@ const resolvers = {
         usuario(_, { id }) {
             var selecionado = listaUsuarios.filter(u => u.id == id);
             return selecionado ? selecionado[0] : null;
-        }
+        },
 
+        perfis() {
+            return listaPerfis;
+        },
+
+        perfil(_, args) {
+            var selecionado = listaPerfis.filter(p => p.id == args.id);
+            return selecionado ? selecionado[0] : null;
+        }
     }
 }
 
