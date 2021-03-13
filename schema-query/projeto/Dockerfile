@@ -1,4 +1,4 @@
-FROM node:lastest
+FROM node:latest
 MAINTAINER Evandro B. dos Reis
 COPY . /var/source
 WORKDIR /var/source
